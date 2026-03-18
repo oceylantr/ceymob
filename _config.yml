@@ -1,0 +1,7 @@
+kramdown:
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  hard_wrap: false
+
+exclude:
+  - "*.json"
+  - "*.xml"
