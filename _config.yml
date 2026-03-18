@@ -2,6 +2,8 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   hard_wrap: false
 
+include:
+  - wallpapers.json
+
 exclude:
-  - "*.json"
   - "*.xml"
