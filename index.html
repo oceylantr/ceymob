@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEYMOB — Mobile Developer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0F;
+    --surface: #111118;
+    --border: #1e1e2e;
+    --accent: #5B5EF4;
+    --accent-dim: rgba(91,94,244,0.15);
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    display: block;
+    height: 3px;
+    background: var(--accent);
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  header {
+    padding: 3rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .brand-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+
+  h2 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 2.5rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .app-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .app-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(91,94,244,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .app-info { flex: 1; }
+
+  .app-name {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+
+  .app-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .app-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+
+  .link-pill {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    border: 1px solid rgba(91,94,244,0.3);
+    border-radius: 20px;
+    padding: 3px 12px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .link-pill:hover {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+  }
+
+  .pages-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pages-table th {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pages-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: #b0b0c0;
+  }
+
+  .pages-table td:first-child {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text);
+  }
+
+  .pages-table tr:last-child td { border-bottom: none; }
+  .pages-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(91,94,244,0.3);
+    transition: border-color 0.2s;
+  }
+  a:hover { border-color: var(--accent); }
+
+  .link-pill { border-bottom: none; }
+
+  footer {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-brand {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+
+  .footer-brand span { color: var(--accent); }
+
+  .footer-contact {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="brand-label">CEYMOB · Developer</div>
+    <h1>OCeylan</h1>
+    <p class="tagline">Independent Android developer — practical apps built with care.</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <h2>Apps</h2>
+
+  <div class="app-card">
+    <img src="ic_launcher.png" style="width:52px;height:52px;border-radius:12px;flex-shrink:0;" alt="Luxplate Icon"/>
+    <div class="app-info">
+      <div class="app-name">Luxplate Icon Pack</div>
+      <div class="app-desc">20,000+ premium icons in a bold tilted card style. Works with 20+ launchers.</div>
+      <div class="app-links">
+        <a href="https://play.google.com/store/apps/developer?id=CEYMOB" class="link-pill">GOOGLE PLAY</a>
+        <a href="privacy-policy.html" class="link-pill">PRIVACY POLICY</a>
+        <a href="terms-and-conditions.html" class="link-pill">TERMS & CONDITIONS</a>
+      </div>
+    </div>
+  </div>
+
+  <h2>Legal Pages</h2>
+
+  <table class="pages-table">
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Privacy Policy — Luxplate</td>
+        <td><a href="privacy-policy.html">privacy-policy.html</a></td>
+      </tr>
+      <tr>
+        <td>Terms &amp; Conditions — Luxplate</td>
+        <td><a href="terms-and-conditions.html">terms-and-conditions.html</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Contact</h2>
+  <p style="color:#b0b0c0;font-size:0.95rem;">
+    <a href="mailto:oguzhanceylan.tr1@gmail.com">oguzhanceylan.tr1@gmail.com</a>
+  </p>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand"><span>CEY</span>MOB · OCeylan</div>
+      <div class="footer-contact">oguzhanceylan.tr1@gmail.com</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
